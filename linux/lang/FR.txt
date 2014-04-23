@@ -1,0 +1,27 @@
+HEADER_L1=Développeur du projet:
+HEADER_L2=Mainteneur TuxDroidServer:
+HEADER_L3=Mainteneur TuxDriver.....:
+HEADER_L4=Mainteneur TuxAudio......:
+
+SERVER_LISTENING_PORT=Port d'écoute du server:
+
+START_CMD=Démarre le server
+STOP_CMD=Arrête le server
+
+START_INIT_ERROR_L1=Impossible de démarre le server, l'intialisation de TuxDroid à échouée !
+START_INIT_ERROR_L2=Vérifiez que le dongle usb est correctement connecté à votre ordinateur
+START_INIT_ERROR_L3=et que le bouton de Tux soit bien sur "On"
+START_INIT_ERROR_L4=Appuyez sur Ctrl+C pour quitter le programme.
+
+SERVER_ALREADY_STARTED=Le server est déjà démarrer !
+
+SERVER_STARTED=Le server est maintenant démarrer !
+ASR_DISABLED=Google ASR étant injoignable les fonctions ASR ont été désactivées ! Pour réactiver les fonctions ASR vous devrez attendre que Google ASR soit de nouveau disponible et relancer TuxDroidServer.
+
+SERVER_STOPPING=Arrêt du server en cours...
+CONNECTIONS_CLOSING=Fermeture des connexions clientes...
+MOTORS_STOPPING=Arrêt de tout mouvements des moteurs de TuxDroid...
+MOTORS_RESETING=Replace les moteurs à leurs positions initiales...
+AUDIO_STOPPING=Arrêt du système audio...
+DRIVER_STOPPING=Arrêt du driver TuxDroid...
+

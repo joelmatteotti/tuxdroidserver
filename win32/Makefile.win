@@ -1,0 +1,70 @@
+# Project: TuxDroidServer
+# Makefile created by Dev-C++ 5.5.1
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = ../obj/TuxServer.o ../obj/TuxAudio.o ../obj/TuxDriver.o ../obj/TuxLogger.o ../obj/TuxStrings.o ../obj/TuxAttitune.o ../obj/TuxTime.o ../obj/TuxUtils.o ../obj/TuxDownloader.o ../obj/TuxState.o ../obj/TuxLang.o ../obj/TuxConfig.o ../obj/TuxCommands.o ../obj/TuxDroid.o ../obj/TuxASR.o
+LINKOBJ  = ../obj/TuxServer.o ../obj/TuxAudio.o ../obj/TuxDriver.o ../obj/TuxLogger.o ../obj/TuxStrings.o ../obj/TuxAttitune.o ../obj/TuxTime.o ../obj/TuxUtils.o ../obj/TuxDownloader.o ../obj/TuxState.o ../obj/TuxLang.o ../obj/TuxConfig.o ../obj/TuxCommands.o ../obj/TuxDroid.o ../obj/TuxASR.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -static-libstdc++ -static-libgcc -L"./lib/" lib/libpthreadGC2.a lib/libcharset.lib lib/libiconv.lib lib/libxml2.lib lib/libfmodex.a lib/libws2_32.a lib/libcurld_imp.lib lib/libFLAC_dynamic.lib libFLAC_dynamic.dll  -pg
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"../include" -I"../include/win32/pthread" -I"../include/win32/iconv" -I"../include/win32/"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"../include" -I"../include/win32/pthread" -I"../include/win32/iconv" -I"../include/win32/"
+BIN      = TuxDroidServer.exe
+CXXFLAGS = $(CXXINCS) -pg
+CFLAGS   = $(INCS) -pg
+RM       = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+../obj/TuxServer.o: ../src/TuxServer.c
+	$(CC) -c ../src/TuxServer.c -o ../obj/TuxServer.o $(CFLAGS)
+
+../obj/TuxAudio.o: ../src/TuxAudio.c
+	$(CC) -c ../src/TuxAudio.c -o ../obj/TuxAudio.o $(CFLAGS)
+
+../obj/TuxDriver.o: ../src/TuxDriver.c
+	$(CC) -c ../src/TuxDriver.c -o ../obj/TuxDriver.o $(CFLAGS)
+
+../obj/TuxLogger.o: ../src/TuxLogger.c
+	$(CC) -c ../src/TuxLogger.c -o ../obj/TuxLogger.o $(CFLAGS)
+
+../obj/TuxStrings.o: ../src/TuxStrings.c
+	$(CC) -c ../src/TuxStrings.c -o ../obj/TuxStrings.o $(CFLAGS)
+
+../obj/TuxAttitune.o: ../src/TuxAttitune.c
+	$(CC) -c ../src/TuxAttitune.c -o ../obj/TuxAttitune.o $(CFLAGS)
+
+../obj/TuxTime.o: ../src/TuxTime.c
+	$(CC) -c ../src/TuxTime.c -o ../obj/TuxTime.o $(CFLAGS)
+
+../obj/TuxUtils.o: ../src/TuxUtils.c
+	$(CC) -c ../src/TuxUtils.c -o ../obj/TuxUtils.o $(CFLAGS)
+
+../obj/TuxDownloader.o: ../src/TuxDownloader.c
+	$(CC) -c ../src/TuxDownloader.c -o ../obj/TuxDownloader.o $(CFLAGS)
+
+../obj/TuxState.o: ../src/TuxState.c
+	$(CC) -c ../src/TuxState.c -o ../obj/TuxState.o $(CFLAGS)
+
+../obj/TuxLang.o: ../src/TuxLang.c
+	$(CC) -c ../src/TuxLang.c -o ../obj/TuxLang.o $(CFLAGS)
+
+../obj/TuxConfig.o: ../src/TuxConfig.c
+	$(CC) -c ../src/TuxConfig.c -o ../obj/TuxConfig.o $(CFLAGS)
+
+../obj/TuxCommands.o: ../src/TuxCommands.c
+	$(CC) -c ../src/TuxCommands.c -o ../obj/TuxCommands.o $(CFLAGS)
+
+../obj/TuxDroid.o: ../src/TuxDroid.c
+	$(CC) -c ../src/TuxDroid.c -o ../obj/TuxDroid.o $(CFLAGS)
+
+../obj/TuxASR.o: ../src/TuxASR.c
+	$(CC) -c ../src/TuxASR.c -o ../obj/TuxASR.o $(CFLAGS)

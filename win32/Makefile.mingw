@@ -1,0 +1,85 @@
+#
+# TuxDroidInterface Linux Makefile
+#
+# Joel Matteotti <joel_DOT_matteotti_AT_free_DOT_fr>
+#
+# TODO: Rendre le Makefile un peut plus propre :)
+#
+
+EXEC=TuxDroidServer.exe
+SRCDIR=../src/
+OBJDIR=../obj/
+INCDIR=../include/
+LIBDIR=./lib/
+CC=gcc
+
+
+LIBPTHREAD=${LIBDIR}libpthreadGC2.a
+LIBCHARSET=${LIBDIR}libcharset.lib
+LIBFMOD=${LIBDIR}libfmodex.a
+LIBICONV=${LIBDIR}libiconv.lib
+LIBWS32=${LIBDIR}libws2_32.a
+LIBXML=${LIBDIR}libxml2.lib
+LIBCURL=${LIBDIR}libcurld_imp.lib
+LIBFLAC=${LIBDIR}libFLAC_dynamic.lib
+LIBFLACDLL=libFLAC_dynamic.dll
+
+
+
+CFLAGS=-I${INCDIR} -I${INCDIR}win32/ -I${INCIDR}win32/pthread/ -I${INCDIR}win32/iconv/ -pipe -O2 -march=core2
+
+LDFLAGS=-l${LIBPTHREAD} -l${LIBCHARSET} -l${LIBFMOD} -l${LIBICONV} -l${LIBWS32} -l${LIBXML} -l${LIBCURL} -l${LIBFLAC} -l{LIBFLACDLL}
+
+
+all: ${EXEC}
+
+
+${EXEC}: TuxServer.o TuxASR.o TuxDroid.o TuxCommands.o TuxConfig.o TuxLang.o TuxDownloader.o TuxUtils.o TuxTime.o TuxAttitune.o TuxStrings.o TuxLogger.o TuxDriver.o TuxAudio.o
+	${CC} ${CFLAGS} ${OBJDIR}*.o ${LIBPTHREAD} ${LIBCHARSET} ${LIBFMOD} ${LIBICONV} ${LIBWS32} ${LIBXML} ${LIBCURL} -o ${EXEC}
+
+
+TuxASR.o: ${SRCDIR}TuxASR.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxASR.o -c ${SRCDIR}TuxASR.c ${LDFLAGS}
+
+TuxDroid.o: ${SRCDIR}TuxDroid.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxDroid.o -c ${SRCDIR}TuxDroid.c ${LDFLAGS}
+
+TuxCommands.o: ${SRCDIR}TuxCommands.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxCommands.o -c ${SRCDIR}TuxCommands.c ${LDFLAGS}
+
+TuxConfig.o: ${SRCDIR}TuxConfig.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxConfig.o -c ${SRCDIR}TuxConfig.c ${LDFLAGS}
+
+
+TuxLang.o: ${SRCDIR}TuxLang.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxLang.o -c ${SRCDIR}TuxLang.c ${LDFLAGS}
+
+TuxState.o: ${SRCDIR}TuxState.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxState.o -c ${SRCDIR}TuxState.c ${LDFLAGS}
+
+TuxDownloader.o: ${SRCDIR}TuxDownloader.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxDownloader.o -c ${SRCDIR}TuxDownloader.c ${LDFLAGS}
+
+TuxUtils.o: ${SRCDIR}TuxUtils.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxUtils.o -c ${SRCDIR}TuxUtils.c ${LDFLAGS}
+
+TuxTime.o: ${SRCDIR}TuxTime.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxTime.o -c ${SRCDIR}TuxTime.c ${LDFLAGS}
+
+TuxAttitune.o: ${SRCDIR}TuxAttitune.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxAttitune.o -c ${SRCDIR}TuxAttitune.c ${LDFLAGS}
+
+TuxStrings.o: ${SRCDIR}TuxStrings.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxStrings.o -c ${SRCDIR}TuxStrings.c ${LDFLAGS}
+
+TuxLogger.o: ${SRCDIR}TuxLogger.c
+	$(CC) $(CFLAGS) -o $(OBJDIR)TuxLogger.o -c $(SRCDIR)TuxLogger.c $(LDFLAGS)
+
+TuxServer.o: ${SRCDIR}TuxServer.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxServer.o -c ${SRCDIR}TuxServer.c ${LDFLAGS}
+
+TuxAudio.o: ${SRCDIR}TuxAudio.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxAudio.o -c ${SRCDIR}TuxAudio.c ${LDFLAGS}
+
+TuxDriver.o: ${SRCDIR}TuxDriver.c
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxDriver.o -c ${SRCDIR}TuxDriver.c ${LDFLAGS}

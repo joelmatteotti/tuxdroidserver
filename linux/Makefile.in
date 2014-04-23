@@ -1,0 +1,112 @@
+#
+# TuxDroidInterface Linux Makefile
+#
+# Joel Matteotti <joel_DOT_matteotti_AT_free_DOT_fr>
+#
+# TODO: Rendre le Makefile un peu plus propre :)
+#
+
+EXEC=TuxDroidServer
+SRCDIR=../src/
+OBJDIR=../obj/
+INCDIR=../include/
+
+CC=gcc
+
+CFLAGS=-I${INCDIR} -ansi -pedantic --std=c99 -Wall -pipe -O2 -fno-stack-protector -D_FORTIFY_SOURCE=0
+
+.PHONY: clean mrproper
+
+
+all: ${EXEC}
+
+
+${EXEC}: TuxServer.o TuxASR.o TuxDroid.o TuxCommands.o TuxConfig.o TuxLang.o TuxState.o TuxDownloader.o TuxUtils.o TuxLogger.o TuxAttitune.o TuxStrings.o TuxDriver.o TuxAudio.o TuxTime.o
+	${CC} ${CFLAGS} -o ${EXEC} ${OBJDIR}*.o @LIBS@
+
+
+TuxASR.o: ${SRCDIR}TuxASR.c
+	mkdir -p $(OBJDIR)
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxASR.o -c ${SRCDIR}TuxASR.c
+
+TuxCommands.o: ${SRCDIR}TuxCommands.c
+	mkdir -p $(OBJDIR)
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxCommands.o -c ${SRCDIR}TuxCommands.c
+
+TuxDroid.o: ${SRCDIR}TuxDroid.c
+	mkdir -p $(OBJDIR)
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxDroid.o -c ${SRCDIR}TuxDroid.c
+
+TuxServer.o: ${SRCDIR}TuxServer.c
+	mkdir -p $(OBJDIR)
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxServer.o -c ${SRCDIR}TuxServer.c
+
+TuxConfig.o: ${SRCDIR}TuxConfig.c
+	mkdir -p $(OBJDIR)
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxConfig.o -c ${SRCDIR}TuxConfig.c
+
+
+TuxLang.o: ${SRCDIR}TuxLang.c
+	mkdir -p $(OBJDIR)
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxLang.o -c ${SRCDIR}TuxLang.c
+
+
+TuxState.o: ${SRCDIR}TuxState.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxState.o -c ${SRCDIR}TuxState.c
+
+
+TuxDownloader.o: ${SRCDIR}TuxDownloader.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxDownloader.o -c ${SRCDIR}TuxDownloader.c
+
+TuxUtils.o: ${SRCDIR}TuxUtils.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxUtils.o -c ${SRCDIR}TuxUtils.c
+
+TuxAttitune.o: ${SRCDIR}TuxAttitune.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxAttitune.o -c ${SRCDIR}TuxAttitune.c
+
+TuxStrings.o: ${SRCDIR}TuxStrings.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxStrings.o -c ${SRCDIR}TuxStrings.c
+
+TuxAudio.o: ${SRCDIR}TuxAudio.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxAudio.o -c ${SRCDIR}TuxAudio.c
+
+TuxLogger.o: ${SRCDIR}TuxLogger.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxLogger.o -c ${SRCDIR}TuxLogger.c
+
+TuxDriver.o: ${SRCDIR}TuxDriver.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxDriver.o -c ${SRCDIR}TuxDriver.c
+
+TuxTime.o: ${SRCDIR}TuxTime.c
+	mkdir -p ${OBJDIR}
+	${CC} ${CFLAGS} -o ${OBJDIR}TuxTime.o -c ${SRCDIR}TuxTime.c
+
+
+install:
+	cp udev/rules.d/45-tuxdroid.rules /etc/udev/rules.d/
+	service udev restart
+	mkdir -p /etc/tuxdroidserver/
+	mkdir -p /var/log/tuxdroidserver/
+
+uninstall:
+	rm -f /etc/udev/rules.d/45-tuxdroid.rules
+	rm -Rf /etc/tuxdroidserver/
+	service udev restart
+
+clean:
+	rm -f ${OBJDIR}*
+
+mrproper: clean
+	rm -Rf ${OBJDIR}
+	rm -f ${EXEC}
+	rm -f config.log
+	rm -f config.h
+	rm -f config.status
+	rm -f Makefile

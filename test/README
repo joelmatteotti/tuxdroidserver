@@ -1,0 +1,43 @@
+TuxDroidServer Unit Tests
+=========================
+
+Unit tests use Ceedling, CMock and Unity:
+
+* Ceedling is a Ruby script easing the setup of unit tests
+* Unity and CMock are C libraries providing unit-testing related functions
+
+
+Prerequisites
+=============
+
+* Ruby
+* gem install ceedling (not sure)
+
+
+How To Run Unit-tests
+=====================
+
+cd test
+rake test:all
+
+
+Configuration
+=============
+
+All the configuration of unit-testing is done through the test/project.yml file.
+For more details, see the documentation of Ceedling.
+
+
+Documentation
+=============
+
+See files in test/vendor/ceedling/docs.
+
+Online documentation:
+
+Ceedling documentation: https://github.com/ThrowTheSwitch/Ceedling/blob/master/docs/CeedlingPacket.md
+Ceedling intro:         http://throwtheswitch.org/white-papers/ceedling-intro.html
+Unity documenation:     https://github.com/ThrowTheSwitch/Unity/blob/master/docs/Unity%20Summary.txt
+Unity intro:            http://throwtheswitch.org/white-papers/unity-intro.html
+CMock documentation:    https://github.com/ThrowTheSwitch/CMock/blob/master/docs/CMock_Summary.md
+CMock intro:            http://throwtheswitch.org/white-papers/cmock-intro.html

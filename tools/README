@@ -1,0 +1,50 @@
+check-license.sh
+================
+
+This will check the license headers of given source files. If a header is not
+well formatted, an error is printed. No automatic replacement is done. Exit code
+is 0 if the license is correct in all given source files, 1 if it did not.
+
+Requirements: bash
+
+Usage:
+
+    bash check-license.sh <source_files>...
+
+
+compare_string_to_template.py
+=============================
+
+This is used by `check-license.sh` to compare the header of the source file to
+the header template file. Exit code is 0 if the template matched the string, 1
+if it did not.
+
+Requirements: Python 2.7 or 3.0+
+
+Usage:
+
+    python compare_string_to_template.py 'string' 'template'
+
+Note: arguments may contain multiple lines
+
+
+license_header.txt
+==================
+
+This file is used by `check_license.sh`. It contains the template header of
+source files.
+
+Usage: none
+
+
+tests
+=====
+
+Contains the unit-tests for Python scripts.
+
+Requirements: Python 2.7
+              python-nose
+
+Usage:
+
+    nosetests tests
